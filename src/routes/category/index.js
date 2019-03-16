@@ -1,6 +1,10 @@
 import { h, Component } from 'preact';
 import style from './style';
+import { connect } from 'preact-redux';
+import reduce from '../../store/reducers';
+import * as actions from '../../store/actions';
 
+@connect(reduce, actions)
 export default class Category extends Component {
 	state = {
 		time: Date.now(),
@@ -13,17 +17,21 @@ export default class Category extends Component {
 	};
 
 	increment = () => {
-		this.setState({ count: this.state.count+1 });
+		this.setState({ count: this.state.count + 1 });
 	};
+
 
 	// gets called when this route is navigated to
 	componentDidMount() {
+
 		// start a timer for the clock:
 		this.timer = setInterval(this.updateTime, 1000);
 	}
 
 	// gets called just before navigating away from the route
-	componentWillUnmount() {
+	componentWillUpdate() {
+		console.log('dede');
+		console.log(this.props);
 		clearInterval(this.timer);
 	}
 
@@ -32,7 +40,7 @@ export default class Category extends Component {
 		return (
 			<div class={style.profile}>
 				<h1>Category: {cat}</h1>
-				<p>This is the user Category for a user named { cat }.</p>
+				<p>This is the user Category for a user named {cat}.</p>
 
 				<div>Current time: {new Date(time).toLocaleString()}</div>
 

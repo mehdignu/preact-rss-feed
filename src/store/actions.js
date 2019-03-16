@@ -1,2 +1,15 @@
-export const STORE_CATEGORIES = 'STORE_CATEGORIES';
-export const STORE_ARTICLES = 'STORE_ARTICLES';
+
+export function storeCategories(cats) {
+	return {
+		type: 'STORE_CATEGORIES',
+		cats
+	};
+}
+
+
+export function storeArticles(articls) {
+	return {
+		type: 'STORE_ARTICLES',
+		articls
+	};
+}

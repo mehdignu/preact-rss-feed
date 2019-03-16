@@ -1,34 +1,22 @@
-import * as actionTypes from '../actions';
-import {createStore} from 'redux';
+import { createStore } from 'redux';
 
-const initialState = {
-    categories: [],
-    articles: []
+let ACTIONS = {
+	STORE_CATEGORIES: ({ categories, ...state }, { cats }) => ({
+		categories: cats,
+		...state
+	}),
+
+	STORE_ARTICLES: ({ articles, ...state }, { articls }) => ({
+		articles: articls,
+		...state
+	})
 };
 
-const rss = (state = initialState, action) => {
-
-
-    switch (action.type) {
-
-
-        case actionTypes.STORE_CATEGORIES:
-            return {
-                ...state,
-                categories: action.categories
-            };
-
-        case actionTypes.STORE_ARTICLES:
-            return {
-                ...state,
-                articles: action.articles
-            };
-
-        default:
-    }
-
-    return state;
+const INITIAL = {
+	categories: [],
+	articles: []
 };
+
 export default createStore((state, action) => (
-    action && rss[action.type] ? rss[action.type](state, action) : state
-), initialState, typeof devToolsExtension === 'function' ? devToolsExtension() : undefined);
+	action && ACTIONS[action.type] ? ACTIONS[action.type](state, action) : state
+), INITIAL, typeof devToolsExtension === 'function' ? devToolsExtension() : undefined);
