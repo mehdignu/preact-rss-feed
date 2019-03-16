@@ -18,7 +18,6 @@ export default class Category extends Component {
 
 	// gets called when this route is navigated to
 	componentDidMount() {
-		console.log('dede');
 		// start a timer for the clock:
 		this.timer = setInterval(this.updateTime, 1000);
 	}

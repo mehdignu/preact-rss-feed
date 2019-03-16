@@ -1,4 +1,12 @@
-import './style';
+import { Provider } from 'preact-redux';
+import store from './store/reducers/rss';
 import App from './components/app';
+import './style';
 
-export default App;
+export default () => (
+    <div id="outer">
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </div>
+);
