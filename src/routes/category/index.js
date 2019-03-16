@@ -39,8 +39,7 @@ export default class Category extends Component {
 		clearInterval(this.timer);
 	}
 
-	// Note: `user` comes from the URL, courtesy of our router
-	render({ cat }, { time, count }) {
+	render({ cat }) {
 
 
 		const articles = this.props.articles
