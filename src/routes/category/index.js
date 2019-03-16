@@ -22,6 +22,11 @@ export default class Category extends Component {
 
 
 	// gets called when this route is navigated to
+	componentWillMount() {
+
+
+	}
+
 	componentDidMount() {
 
 		// start a timer for the clock:
@@ -30,26 +35,47 @@ export default class Category extends Component {
 
 	// gets called just before navigating away from the route
 	componentWillUpdate() {
-		console.log('dede');
-		console.log(this.props);
+
 		clearInterval(this.timer);
 	}
 
 	// Note: `user` comes from the URL, courtesy of our router
 	render({ cat }, { time, count }) {
+
+
+		const articles = this.props.articles
+
+			.filter((x) =>
+				(x.children[4].value === cat)
+			)
+
+			.map(x => {
+
+					return (
+
+						<a href={x.children[2].value}>
+							<div className="column">
+								<div className="card">
+									<h3>{x.children[0].value}</h3>
+									<p>{x.children[1].value}</p>
+								</div>
+							</div>
+						</a>
+
+
+					);
+				}
+			);
+
+
 		return (
-			<div class={style.profile}>
-				<h1>Category: {cat}</h1>
-				<p>This is the user Category for a user named {cat}.</p>
 
-				<div>Current time: {new Date(time).toLocaleString()}</div>
+			<div className="row">
 
-				<p>
-					<button onClick={this.increment}>Click Me</button>
-					{' '}
-					Clicked {count} times.
-				</p>
+				{articles}
 			</div>
+
+
 		);
 	}
 }

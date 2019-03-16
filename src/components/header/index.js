@@ -1,15 +1,31 @@
-import { h } from 'preact';
+import { Component, h } from 'preact';
 import { Link } from 'preact-router/match';
 import style from './style';
+import { connect } from 'preact-redux';
+import reduce from '../../store/reducers';
+import * as actions from '../../store/actions';
 
-const Header = () => (
-	<header class={style.header}>
-		<h1>Preact App</h1>
-		<nav>
-			<Link activeClassName={style.active} href="/">Home</Link>
-			<Link activeClassName={style.active} href="/science">John</Link>
-		</nav>
-	</header>
-);
+@connect(reduce, actions)
+export default class App extends Component {
+	render() {
 
-export default Header;
+		//map through the persons date and list them after filtering
+		const header = this.props.categories.map(x => {
+				return (
+
+					<a href={'/' + x}><i className="fa fa-fw fa-envelope"></i> {x}</a>
+
+				);
+			}
+		);
+
+		return (
+
+			<div className="sidebar">
+				{header}
+			</div>
+		);
+	}
+}
+
+
