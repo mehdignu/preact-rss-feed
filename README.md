@@ -1,3 +1,3 @@
 # rss-feed
  
-simple preact rss feed with redux
+simple preact rss feed reader with redux
