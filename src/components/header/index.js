@@ -22,7 +22,10 @@ export default class App extends Component {
 		return (
 
 			<div className="sidebar">
+				<a href={'/all'}><i className="fa fa-fw fa-envelope"></i> Home</a>
+
 				{header}
+
 			</div>
 		);
 	}

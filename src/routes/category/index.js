@@ -45,8 +45,10 @@ export default class Category extends Component {
 
 		const articles = this.props.articles
 
-			.filter((x) =>
-				(x.children[4].value === cat)
+			.filter(({x}) =>
+
+				((cat !== 'all') ?  (x.children[4].value === cat) : true )
+
 			)
 
 			.map(x => {
